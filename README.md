@@ -1,6 +1,18 @@
 # my_flutter_app
 
-A new Flutter project.
+## Things I care about testing with flutter: (WIP)
+1. [ ] UI Components functionality and Theming
+2. [ ] Dynamic UI Interactions
+3. [ ] Side Effects (IE. API calls and Async Actions)
+4. [ ] State managment global and page
+5. [ ] Routing and data passing between components
+10. [ ] Data navigation, formatting and type use
+6. [ ] Unit tests
+7. [ ] Integration tests
+8. [ ] Desktop/Web app feasability
+9. [ ] I18N
+
+
 
 ## Getting Started
 
