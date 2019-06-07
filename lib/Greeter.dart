@@ -9,7 +9,8 @@ class GreeterState extends State {
   String greeting = "Hello from State";
 
   void _toggleState() {
-    var next = greeting == "Hello from State" ? "Hello World" : "Hello from State";
+    var next =
+        greeting == "Hello from State" ? "Hello World" : "Hello from State";
     setState(() {
       greeting = next;
     });
