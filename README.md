@@ -2,10 +2,12 @@
 
 ## Things I care about testing with flutter: (WIP)
 1. [ ] UI Components functionality and Theming
-    * [ ] table
+    * [x] table
     * [ ] select
 2. [ ] Dynamic UI Interactions
-3. [ ] Side Effects (IE. API calls and Async Actions)
+3. [x] Side Effects (IE. API calls and Async Actions)
+    * [x] Basic get request to display data
+    * [x] Get data with states, loading, error and data and handle them
 4. [ ] State managment global and page
 5. [ ] Routing and data passing between components
 10. [ ] Data navigation, formatting and type use

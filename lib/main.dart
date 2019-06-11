@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
-
+import 'package:flutter/material.dart';
 import 'package:my_flutter_app/Greeter.dart';
 import 'package:my_flutter_app/Greeting.dart';
+import 'package:my_flutter_app/People.dart';
 import 'package:my_flutter_app/RandomWords.dart';
 import 'package:my_flutter_app/SecondScreen.dart';
 
@@ -29,7 +29,8 @@ class MyApp extends StatelessWidget {
         "/second": (context) => SecondScreen(
               title: "Dynamic Title",
             ),
-        "/random": (context) => RandomWords()
+        "/random": (context) => RandomWords(),
+        "/swPeople": (context) => People(),
       },
     );
   }
@@ -94,6 +95,13 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => RandomWords()));
+              },
+            ),
+            RaisedButton(
+              child: Text("Awesome People"),
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => People()));
               },
             )
           ],
