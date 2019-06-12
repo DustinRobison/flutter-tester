@@ -11,6 +11,7 @@ class People extends StatefulWidget {
 class PeopleState extends State {
   bool loading = false;
   List people = [];
+  String dropdownValue = 'One';
   String error = null;
   var url = 'https://swapi.co/api/people';
 
@@ -19,12 +20,27 @@ class PeopleState extends State {
     this.fetchPeople();
   }
 
+  String getDropDownValueString() {
+    switch (this.dropdownValue) {
+      case "Four":
+        return "4";
+      case "Three":
+        return "3";
+      case "Two":
+        return "2";
+      default:
+        return "1";
+    }
+  }
+
   Future fetchPeople() async {
     setState(() {
       this.loading = true;
     });
     try {
-      final http.Response response = await http.get(url);
+      final fullUrl = url + '/?page=' + getDropDownValueString();
+      debugPrint(fullUrl);
+      final http.Response response = await http.get(fullUrl);
       final data = json.decode(response.body);
       setState(() {
         this.people = data['results'];
@@ -74,20 +90,46 @@ class PeopleState extends State {
     return []..addAll(tableHeader)..addAll(tableData);
   }
 
+  Widget getTable() {
+    return this.loading
+        ? Center(child: CircularProgressIndicator())
+        : this.error != null
+            ? Text('Error loading data, sorry!\n' + this.error)
+            : Table(
+                children: getPeopleListForTable(),
+                border: TableBorder.all(color: Colors.grey[100]),
+                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: new AppBar(
           title: new Text('Star Wars People'),
         ),
-        body: this.loading
-            ? Center(child: CircularProgressIndicator())
-            : this.error != null
-                ? Text('Error loading data, sorry!\n' + this.error)
-                : Table(
-                    children: getPeopleListForTable(),
-                    border: TableBorder.all(color: Colors.grey[100]),
-                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                  ));
+        body: Column(
+          children: <Widget>[
+            getTable(),
+            Center(
+              child: DropdownButton<String>(
+                value: dropdownValue,
+                onChanged: (String newValue) {
+                  setState(() {
+                    dropdownValue = newValue;
+                  });
+                  fetchPeople();
+                },
+                items: <String>['One', 'Two', 'Three', 'Four']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+            ),
+          ],
+        ));
   }
 }

@@ -48,6 +48,44 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: new AppBar(
           title: new Text(widget.title),
         ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                child: Text("My Drawer!"),
+                decoration: BoxDecoration(color: Colors.blue),
+              ),
+              ListTile(
+                title: Text("Navigate"),
+                onTap: () {
+                  Navigator.pop(context); // Close drawer
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              SecondScreen(title: "Dynamic Title")));
+                },
+              ),
+              ListTile(
+                title: Text('Random'),
+                onTap: () {
+                  Navigator.pop(context); // Close drawer
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => RandomWords()));
+                },
+              ),
+              ListTile(
+                title: Text('Star Wars'),
+                onTap: () {
+                  Navigator.pop(context); // Close drawer
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => People()));
+                },
+              )
+            ],
+          ),
+        ),
         body: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
