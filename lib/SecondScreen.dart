@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'models/AppModel.dart';
 
 class SecondScreen extends StatelessWidget {
   final List<Map<String, String>> people = [
@@ -17,6 +20,8 @@ class SecondScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var appModel = Provider.of<AppModel>(context);
+
     return Scaffold(
         appBar: AppBar(title: Text(this.title)),
         body: Center(
@@ -39,6 +44,12 @@ class SecondScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 32));
                 },
               ),
+            ),
+            RaisedButton(
+              child: Text(appModel.appNumber.toString()),
+              onPressed: () {
+                appModel.incrementAppNumber();
+              },
             )
           ],
         )));

@@ -6,29 +6,34 @@ import 'package:my_flutter_app/People.dart';
 import 'package:my_flutter_app/RandomWords.dart';
 import 'package:my_flutter_app/SecondScreen.dart';
 import 'package:my_flutter_app/Theme.dart';
+import 'package:provider/provider.dart';
+
+import 'models/AppModel.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: defaultTheme,
+    return ChangeNotifierProvider(
+        builder: (context) => AppModel(),
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: defaultTheme,
 
 ////      home: new MyHomePage(
 ////        title: 'Flutter Demo Home page'
 ////      )
-      initialRoute: "/",
-      routes: {
-        '/': (context) => new MyHomePage(title: "Flutter Demo Home Page"),
-        "/second": (context) => SecondScreen(
-              title: "Dynamic Title",
-            ),
-        "/random": (context) => RandomWords(),
-        "/swPeople": (context) => People(),
-      },
-    );
+          initialRoute: "/",
+          routes: {
+            '/': (context) => new MyHomePage(title: "Flutter Demo Home Page"),
+            "/second": (context) => SecondScreen(
+                  title: "Dynamic Title",
+                ),
+            "/random": (context) => RandomWords(),
+            "/swPeople": (context) => People(),
+          },
+        ));
   }
 }
 
@@ -43,6 +48,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    var appModel = Provider.of<AppModel>(context);
     final wordPair = WordPair.random();
     return Scaffold(
         appBar: new AppBar(
@@ -137,7 +143,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => People()));
               },
-            )
+            ),
+            Text('Global State Number: ' + appModel.appNumber.toString())
           ],
         )));
   }
