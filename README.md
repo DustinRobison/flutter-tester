@@ -9,16 +9,22 @@
 2. [x] Side Effects (IE. API calls and Async Actions)
     * [x] Basic get request to display data
     * [x] Get data with states, loading, error and data and handle them
-3. [ ] State management global and page
+3. [x] State management global and page
     * [x] Local component state
-    * [ ] global state
+    * [x] global state
+        -- Tested with Provider v3, worked great for our needs
 4. [x] Routing and data passing between components
-5. [ ] Data navigation, formatting and type use
-6. [ ] Unit tests
-7. [ ] Integration tests
+5. [x] Unit tests
+6. [x] Integration tests
+    * [x] do interactions
+    * [x] take screenshots
+7. [ ] I18N
 8. [ ] Desktop/Web app feasibility
-9. [ ] I18N
 
+
+## Testing:
+* Unit & Widget: `flutter test test/Main_test.dart`
+* Integration: `flutter drive --target=test_driver/app.dart`
 
 
 ## Getting Started
