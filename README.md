@@ -4,6 +4,7 @@
 1. [ ] UI Components functionality and Theming
     * [x] table
     * [ ] select
+    * [x] Theme
 2. [ ] Dynamic UI Interactions
 3. [x] Side Effects (IE. API calls and Async Actions)
     * [x] Basic get request to display data

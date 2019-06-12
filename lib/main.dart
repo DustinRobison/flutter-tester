@@ -5,6 +5,7 @@ import 'package:my_flutter_app/Greeting.dart';
 import 'package:my_flutter_app/People.dart';
 import 'package:my_flutter_app/RandomWords.dart';
 import 'package:my_flutter_app/SecondScreen.dart';
+import 'package:my_flutter_app/Theme.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,16 +14,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-//        primarySwatch: Colors.purple,
-          primaryColor: Colors.blueGrey,
-          accentColor: Colors.black,
-          canvasColor: Colors.brown[200],
-          brightness: Brightness.dark,
-          primaryTextTheme: TextTheme(title: TextStyle(color: Colors.white))),
-//      home: new MyHomePage(
-//        title: 'Flutter Demo Home page'
-//      )
+      theme: defaultTheme,
+
+////      home: new MyHomePage(
+////        title: 'Flutter Demo Home page'
+////      )
       initialRoute: "/",
       routes: {
         '/': (context) => new MyHomePage(title: "Flutter Demo Home Page"),

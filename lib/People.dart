@@ -40,21 +40,35 @@ class PeopleState extends State {
     }
   }
 
+  Text getTableHeaderItem(String value) {
+    return Text(value, style: Theme.of(context).textTheme.subhead);
+  }
+
   List<TableRow> getPeopleListForTable() {
     var tableHeader = [
-      TableRow(children: [
-        Text('Name'),
-        Text('Height'),
-        Text('Mass'),
-        Text('Gender')
-      ])
+      TableRow(
+          decoration: new BoxDecoration(color: Colors.blueAccent),
+          children: [
+            getTableHeaderItem('Name'),
+            getTableHeaderItem('Height'),
+            getTableHeaderItem('Mass'),
+            getTableHeaderItem('Gender'),
+          ])
     ];
 
     var tableData = this.people.map((person) => TableRow(children: [
-          Text(person['name']),
-          Text(person['height']),
-          Text(person['mass']),
-          Text(person['gender'])
+          Text(person.containsKey('name') && person['name'] != null
+              ? person['name']
+              : ""),
+          Text(person.containsKey('height') && person['height'] != null
+              ? person['height']
+              : ""),
+          Text(person.containsKey('mass') && person['mass'] != null
+              ? person['mass']
+              : ""),
+          Text(person.containsKey('gender') && person['gender'] != null
+              ? person['gender']
+              : ""),
         ]));
 
     return []..addAll(tableHeader)..addAll(tableData);
@@ -72,15 +86,8 @@ class PeopleState extends State {
                 ? Text('Error loading data, sorry!\n' + this.error)
                 : Table(
                     children: getPeopleListForTable(),
-                    border: TableBorder.all()));
+                    border: TableBorder.all(color: Colors.grey[100]),
+                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                  ));
   }
 }
-
-//this.people.map((person) =>
-//TableRow(
-//children: [
-//Text(person['name']),
-//
-//]
-//)
-//)
