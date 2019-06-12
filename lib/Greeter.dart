@@ -9,6 +9,7 @@ class GreeterState extends State {
   String greeting = "Hello from State";
 
   void _toggleState() {
+    debugPrint("Tapped GreeterState to _toggleState");
     var next = greeting == "Hello from GreeterState"
         ? "Hello World"
         : "Hello from GreeterState";
@@ -20,9 +21,11 @@ class GreeterState extends State {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: Key('GreeterState-Gesture'),
       onTap: this._toggleState,
       child: Text(
         this.greeting,
+        key: Key('GreeterState-text'),
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.white,

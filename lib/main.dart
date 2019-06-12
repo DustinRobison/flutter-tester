@@ -92,8 +92,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-        body: Center(
-            child: Column(
+        body: SingleChildScrollView(
+            child: Center(
+                child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
@@ -144,8 +145,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     context, MaterialPageRoute(builder: (context) => People()));
               },
             ),
-            Text('Global State Number: ' + appModel.appNumber.toString())
+            Text(
+              'Global State Number: ' + appModel.appNumber.toString(),
+              key: Key('main-global-state'),
+            )
           ],
-        )));
+        ))));
   }
 }
