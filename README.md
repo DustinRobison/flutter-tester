@@ -18,7 +18,8 @@
 6. [x] Integration tests
     * [x] do interactions
     * [x] take screenshots
-7. [ ] I18N
+7. [x] I18N
+    * [x] very basic language map implementation.. needs to be refined
 8. [ ] Desktop/Web app feasibility
 
 
