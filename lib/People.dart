@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_flutter_app/server/StarWarsPeople.dart';
+import 'package:my_flutter_app/server/StarWarsPerson.dart';
 
 class People extends StatefulWidget {
   @override
@@ -10,7 +12,7 @@ class People extends StatefulWidget {
 
 class PeopleState extends State {
   bool loading = false;
-  List people = [];
+  List<StarWarsPerson> people = [];
   String dropdownValue = 'One';
   String error = null;
   var url = 'https://swapi.co/api/people';
@@ -41,9 +43,11 @@ class PeopleState extends State {
       final fullUrl = url + '/?page=' + getDropDownValueString();
       debugPrint(fullUrl);
       final http.Response response = await http.get(fullUrl);
-      final data = json.decode(response.body);
+      final Map data = json.decode(response.body);
+      final StarWarsPeople starWarsPeople = StarWarsPeople.fromJson(data);
+      debugPrint('Star wars people next: ' + starWarsPeople.next);
       setState(() {
-        this.people = data['results'];
+        this.people = starWarsPeople.results;
       });
     } catch (err) {
       setState(() {
@@ -73,18 +77,10 @@ class PeopleState extends State {
     ];
 
     var tableData = this.people.map((person) => TableRow(children: [
-          Text(person.containsKey('name') && person['name'] != null
-              ? person['name']
-              : ""),
-          Text(person.containsKey('height') && person['height'] != null
-              ? person['height']
-              : ""),
-          Text(person.containsKey('mass') && person['mass'] != null
-              ? person['mass']
-              : ""),
-          Text(person.containsKey('gender') && person['gender'] != null
-              ? person['gender']
-              : ""),
+          Text(person.name ?? ""),
+          Text(person.height ?? ""),
+          Text(person.mass ?? ""),
+          Text(person.gender ?? ""),
         ]));
 
     return []..addAll(tableHeader)..addAll(tableData);
