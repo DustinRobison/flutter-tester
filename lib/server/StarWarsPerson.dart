@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'StarWarsPerson.g.dart';
 
-@JsonSerializable(includeIfNull: false)
+@JsonSerializable()
 class StarWarsPerson {
   final String name;
   final String height;

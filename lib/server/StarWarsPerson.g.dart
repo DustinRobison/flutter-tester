@@ -17,21 +17,13 @@ StarWarsPerson _$StarWarsPersonFromJson(Map json) {
       json['gender'] as String);
 }
 
-Map<String, dynamic> _$StarWarsPersonToJson(StarWarsPerson instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('name', instance.name);
-  writeNotNull('height', instance.height);
-  writeNotNull('mass', instance.mass);
-  writeNotNull('hair_color', instance.hair_color);
-  writeNotNull('skin_color', instance.skin_color);
-  writeNotNull('eye_color', instance.eye_color);
-  writeNotNull('gender', instance.gender);
-  return val;
-}
+Map<String, dynamic> _$StarWarsPersonToJson(StarWarsPerson instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'height': instance.height,
+      'mass': instance.mass,
+      'hair_color': instance.hair_color,
+      'skin_color': instance.skin_color,
+      'eye_color': instance.eye_color,
+      'gender': instance.gender
+    };

@@ -77,10 +77,10 @@ class PeopleState extends State {
     ];
 
     var tableData = this.people.map((person) => TableRow(children: [
-          Text(person.name ?? ""),
-          Text(person.height ?? ""),
-          Text(person.mass ?? ""),
-          Text(person.gender ?? ""),
+          Text(person.name),
+          Text(person.height),
+          Text(person.mass),
+          Text(person.gender),
         ]));
 
     return []..addAll(tableHeader)..addAll(tableData);
